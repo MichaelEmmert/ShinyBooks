@@ -1,18 +1,21 @@
-library(shinydashboard)
-
-dashboardPage(
-  dashboardHeader(title = "My Dashboard"),
-  dashboardSidebar(
-    
-    sidebarUserPanel("Virtual Library",
-                     image = "https://www.avl.lib.al.us/sites/avlcms.asc.edu/files/slideshow-images/avl_roundshelves_globe.jpg"),
-    sidebarMenu(
-      menuItem("Suggestor", tabName = "suggestor", icon = icon("book")),
-      menuItem("Genre", tabName = "genre", icon = icon("book-reader")),
-      dashboardBody(
-        
-
-    )
+fluidPage(
+  titlePanel("Virtual Library"),
+  sidebarLayout(
+    sidebarPanel(
+      autocomplete_input("in1", "Your Favorite Book:", book_title, max_options = 10)
+    ),
+    mainPanel(
+      fluidRow(
+        column(6, 
+               textOutput('out1'),
+               htmlOutput('out2'),
+               textOutput('out3')
+               ),
+        column(6, 
+               textOutput('out4'),
+               htmlOutput('out5'),
+               textOutput('out6'))
+      )
     )
   )
 )
