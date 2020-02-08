@@ -35,10 +35,10 @@ function(input, output){
   
   #BOOK 1
   output$out1 <- renderText({
-    book_title_1()
+    c('<H1>',book_title_1(),'</H1>')
   })
   output$out2 <- renderText({
-    c('<img src="',book_image_1(),'">')
+    c('<img src="',book_image_1(),'"width="350" height="500">')
   })
   output$out3 <- renderText({
     book_descrip_1()
@@ -46,10 +46,10 @@ function(input, output){
   
   #BOOK 2
   output$out4 <- renderText({
-    book_title_2()
+    c('<H1>',book_title_2(),'</H1>')
   })
   output$out5 <- renderText({
-    c('<img src="',book_image_2(),'">')
+    c('<img src="',book_image_2(),'"width="350" height="500">')
   })
   output$out6 <- renderText({
     book_descrip_2()
