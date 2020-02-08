@@ -15,7 +15,8 @@ function(input, output){
   })
   #BOOK 2
   book_title_2 <- reactive({
-    result_book_2 = Book_similarity(input$in1)
+    result_book_2 = desc %>% filter(book_title == input$in1) %>% select(Pointer) %>% top_n(1)
+    result_book_2 <- as.character(result_book_2[[1]][1])
     result_book_2
   })
   book_image_2 <- reactive({
