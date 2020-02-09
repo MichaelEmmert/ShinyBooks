@@ -31,6 +31,39 @@ function(input, output){
     description_book_2 <- as.character(descript_2[[1]])
     description_book_2
   })
+  #GENRE 1 and 2 Denisty plot
+  genre_density <- reactive({
+    g3 <- books %>% 
+      filter((genre == input$in2) | (genre == input$in3)) %>%
+      select(genre,book_pages)
+    
+    g3_filter <- g3 %>% 
+      drop_na(book_pages) %>%
+      group_by(genre) %>% 
+      summarise(filter = (mean(book_pages)+sd(book_pages)*2)) %>% 
+      arrange(desc(filter)) %>% top_n(1) %>% select(filter)
+    
+    graph3 <- g3 %>% 
+      drop_na(book_pages) %>% 
+      filter(book_pages < g3_filter[[1]])
+    
+    Desnity <- ggplot(graph3, aes(x=book_pages, fill= genre)) + 
+      geom_density(alpha=.3)
+    Desnity
+  })
+  
+  Author_scatter <- reactive({
+    selected_author <- books %>% filter(author == input$in4)
+    graph1 <- selected_author %>% 
+      select(book_rating,book_pages,book_title) %>%
+      distinct(book_title,.keep_all = TRUE) %>% 
+      rename(book_title.html.tooltip = book_title,
+             book_rating = book_rating,
+             book_pages = book_pages)
+    g1 <- gvisScatterChart(graph1, options = scatter_options)
+  })
+
+  
   
   #OUTPUTS
   
@@ -54,6 +87,14 @@ function(input, output){
   })
   output$out6 <- renderText({
     book_descrip_2()
+  })
+  #GENRE
+  output$out7 <- renderPlot({
+    genre_density()
+  })
+  #AUTHOR
+  output$out10 <- renderGvis({
+    Author_scatter()
   })
   
 }
