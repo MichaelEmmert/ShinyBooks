@@ -29,9 +29,9 @@ scatter_options <- list(legend="none",
                         pointSize=3,
                         title="Number of Pages vs Rating", 
                         vAxis="{title:'Number of Pages'}",
-                        hAxis="{title:'Book Rating'}", 
-                        width=500, 
-                        height=400,
+                        hAxis="{title:'Rating'}", 
+                        width=600, 
+                        height=900,
                         backgroundColor = '#ECF0F5'
                         )
 
@@ -42,47 +42,11 @@ bar_plot_options = list(legend="none",
                         title="Ratings by Genre",
                         vAxis="{title:'Genre'}",
                         hAxis="{title:'Rating'}",
-                        width=400,
-                        height=1000,
+                        width=600,
+                        height=900,
                         backgroundColor = '#ECF0F5'
                         )
 
 bar_plot_options$explorer <- "{actions:['dragToZoom', 'rightClickToReset']}"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
